@@ -1,0 +1,35 @@
+### 1. Listar planificaciones (GET)
+GET http://localhost:8080/api/planificaciones
+
+### 2. Crear una planificación (POST)
+POST http://localhost:8080/api/planificaciones
+Content-Type: application/json
+
+{
+  "asignatura": "APPSMOVILES",
+  "unidad": "Unidad 1",
+  "objetivo": "OA 03: Leer .",
+  "tipoRecurso": "Texto",
+  "titulo": "Lectura guiada",
+  "descripcion": "Leer el cuento breve y responder preguntas.",
+  "validado": true,
+  "enviadoUtp": true,
+  "autorizado": true,
+  "asignadoAlumno": true,
+  "respuestaEntregada": false,
+  "respuestaAlumno": ""
+}
+
+### 3. Guardar configuración de examen (PUT)
+PUT http://localhost:8080/api/configuracion-examen
+Content-Type: application/json
+
+{
+  "intentosPermitidos": 3,
+  "fechaInicio": "01/11/2026",
+  "fechaFin": "15/11/2026",
+  "version": "v1.2"
+}
+
+### 4. Listar configuración de examen (GET)
+GET http://localhost:8080/api/configuracion-examen
