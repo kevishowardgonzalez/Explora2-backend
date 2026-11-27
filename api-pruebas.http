@@ -1,35 +1,82 @@
-### 1. Listar planificaciones (GET)
-GET http://localhost:8080/api/planificaciones
+# Cliente REST de VS Code. Ejecutar las peticiones de planificación en orden.
+@base = http://localhost:8089
+@planId = {{crearPlan.response.body.$.id}}
 
-### 2. Crear una planificación (POST)
-POST http://localhost:8080/api/planificaciones
+### Listar planificaciones
+GET {{base}}/api/planificaciones
+
+### Crear un ejemplo y capturar el id devuelto
+# @name crearPlan
+POST {{base}}/api/planificaciones
 Content-Type: application/json
 
 {
-  "asignatura": "APPSMOVILES",
-  "unidad": "Unidad 1",
-  "objetivo": "OA 03: Leer .",
+  "asignatura": "Lenguaje",
+  "unidad": "Unidad ficticia",
+  "objetivo": "OA lectura",
   "tipoRecurso": "Texto",
-  "titulo": "Lectura guiada",
-  "descripcion": "Leer el cuento breve y responder preguntas.",
+  "titulo": "DSY1105-EJEMPLO",
+  "descripcion": "Lectura inicial",
   "validado": true,
   "enviadoUtp": true,
-  "autorizado": true,
-  "asignadoAlumno": true,
+  "autorizado": false,
+  "asignadoAlumno": false,
   "respuestaEntregada": false,
   "respuestaAlumno": ""
 }
 
-### 3. Guardar configuración de examen (PUT)
-PUT http://localhost:8080/api/configuracion-examen
+### Recuperar el ejemplo creado
+GET {{base}}/api/planificaciones/{{planId}}
+
+### Actualizar el ejemplo completo
+PUT {{base}}/api/planificaciones/{{planId}}
+Content-Type: application/json
+
+{
+  "asignatura": "Lenguaje",
+  "unidad": "Unidad ficticia",
+  "objetivo": "OA lectura",
+  "tipoRecurso": "Texto",
+  "titulo": "DSY1105-EJEMPLO",
+  "descripcion": "Lectura modificada",
+  "validado": true,
+  "enviadoUtp": true,
+  "autorizado": true,
+  "asignadoAlumno": false,
+  "respuestaEntregada": false,
+  "respuestaAlumno": ""
+}
+
+### Eliminar exclusivamente el ejemplo creado en esta sesión
+DELETE {{base}}/api/planificaciones/{{planId}}
+
+### Confirmar 404 tras la eliminación
+GET {{base}}/api/planificaciones/{{planId}}
+
+### Consultar configuración antes de cualquier escritura
+GET {{base}}/api/configuracion-examen
+
+### Crear configuración (ejecutar solo en base de prácticas vacía)
+PUT {{base}}/api/configuracion-examen
+Content-Type: application/json
+
+{
+  "intentosPermitidos": 2,
+  "fechaInicio": "01/11/2026",
+  "fechaFin": "15/11/2026",
+  "version": "DSY1105-EJEMPLO-A"
+}
+
+### Actualizar la configuración ficticia propia y comparar el id
+PUT {{base}}/api/configuracion-examen
 Content-Type: application/json
 
 {
   "intentosPermitidos": 3,
   "fechaInicio": "01/11/2026",
   "fechaFin": "15/11/2026",
-  "version": "v1.2"
+  "version": "DSY1105-EJEMPLO-B"
 }
 
-### 4. Listar configuración de examen (GET)
-GET http://localhost:8080/api/configuracion-examen
+### Confirmar la configuración guardada
+GET {{base}}/api/configuracion-examen
