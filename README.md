@@ -2,7 +2,7 @@
 
 Javier Cruz y Kevis Gonzalez · Desarrollo de Aplicaciones Móviles DSY1105, Duoc UC.
 
-Este servicio gestiona las planificaciones de segundo básico y la configuración global del examen. Los controladores reciben JSON, los servicios aplican la lógica y los repositorios JPA persisten las entidades en XAMPP. La integración con los perfiles docente, UTP y alumno de Android corresponde a una fase posterior.
+Este servicio gestiona las planificaciones de segundo básico y la configuración global del examen. Los controladores reciben JSON, los servicios aplican la lógica y los repositorios JPA persisten las entidades en XAMPP. El servicio está integrado con la aplicación Android mediante Retrofit, permitiendo la gestión remota de planificaciones, autorización por UTP, asignación de actividades, entrega de respuestas y configuración de evaluaciones.
 
 ## Ejecución en Windows
 
@@ -15,7 +15,7 @@ Este servicio gestiona las planificaciones de segundo básico y la configuració
 | Acceso | URL |
 |---|---|
 | Base desde el computador | [http://localhost:8089/](http://localhost:8089/) |
-| Base futura desde el emulador Android | [http://10.0.2.2:8089/](http://10.0.2.2:8089/) |
+| Base desde el emulador Android | [http://10.0.2.2:8089/](http://10.0.2.2:8089/) |
 | Swagger UI | [Interfaz interactiva](http://localhost:8089/swagger-ui/index.html) |
 | Especificación OpenAPI | [JSON](http://localhost:8089/v3/api-docs) |
 
@@ -71,7 +71,7 @@ Ejemplo de respuesta del PUT. El cuerpo de solicitud contiene intentosPermitidos
 }
 ```
 
-### Correspondencia para futuros DTO Kotlin
+### Correspondencia con DTO Kotlin
 
 | Recurso | Atributos JSON | Java en la entidad | Kotlin previsto |
 |---|---|---|---|
